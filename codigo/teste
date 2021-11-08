@@ -1,0 +1,104 @@
+{
+    "nome" : "Felipe",
+    "data_nascimento" : new Date(1994,02,26),
+    "curso": {
+        "nome" : "Sistemas de informação"
+    },
+    "notas" : [10,0, 4.0, 8.0],
+    "habilidades" : [
+        {
+            "nome" : "ingles",
+            "nivel" : "avançado"
+        },
+        {
+            "nome" : "taekwondo",
+            "nivel" : "básico"
+        }   
+    ] 
+}
+{
+    "nome" : "Augusto",
+    "data_nascimento" : new Date(2000,02,26),
+    "curso": {
+        "nome" : "Ciências da computação"
+    },
+}
+{
+    "nome" : "Julio",
+    "data_nascimento" : new Date(1972, 08, 30),
+    "curso": {
+        "nome" : "Medicina"
+    },
+    "notas" : [10,0, 9.0, 8.0],
+    "habilidades" : [
+        {
+            "nome" : "ingles",
+            "nivel" : "avançado"
+        }
+    ] 
+}    
+
+{
+    "nome" : "Alberto",
+    "data_nascimento" : new Date(1972, 10, 30),
+    "curso": {
+        "nome" : "Engenharia"
+    },
+    "notas" : [7,0, 9.0, 8.0],
+    "habilidades" : [
+        {
+            "nome" : "inglës",
+            "nivel" : "intermediário"
+        }
+    ] 
+}    
+
+{
+    "nome" : "Daniela",
+    "data_nascimento" : new Date(1975, 50, 20),
+    "curso": {
+        "nome" : "Moda"
+    },
+    "notas" : [6,0, 6.0, 7.0],
+    "habilidades" : [
+        {
+            "nome" : "Espanhol",
+            "nivel" : "intermediário"
+        }
+    ] 
+}    
+
+
+db.alunos.find({
+    $or : [
+        {"curso.nome" : "Sistemas de informação"},
+        {"curso.nome" : "Medicina"}    
+    ] 
+})
+
+db.alunos.find ( { "curso.nome": { $in: ["Sistemas de informação","Medicina" ] } } )
+db.inventory.find ( { quantity: { $in: [20, 50] } } )
+
+
+db.alunos.find({
+    $and : [
+        {"nome" : "Felipe"},
+        {"curso.nome" : "Sistemas de informação"}    
+    ]
+})
+
+db.alunos.find({
+    $and : [
+        {"nome" : "Felipe"},
+        {"data_nascimento" : new Date(1994, 02, 26)}    
+    ]
+})
+
+db.alunos.find (
+{
+    $or : [
+        {"curso.nome": "Sistemas de informação"},
+        {"curso.nome": "Ciências da computação"}
+    ]
+}
+)
