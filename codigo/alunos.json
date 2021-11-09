@@ -27,17 +27,3 @@ db.alunos.aggregate([
         }
     }
     ])
-
-
-db.alunos.aggregate([
-    {
-        $geoNear : {
-            near : [
-                coordinates: [-23.5834181, -46.6418552],
-                type : "Point"
-        ],
-            distanceField : "distancia",
-            spherical : true
-    }
-}
-])

@@ -157,13 +157,36 @@ db.alunos.update (
 )
 
 db.alunos.update (
+    {"nome" : "Felipe"},
+    {$push : {"notas" : 6.0 }}
+)
+
+db.alunos.update (
 		{"nome" : "Antonio"},
 		{$set : { "notas" :  [10.0, 5.0, 6.0, 8.0] }}
 )
+
 db.alunos.update(
         {"habilidades.nome" : "inglës"},
         {$set : {"habilidades.$.nome": "Ingles"}},
         { multi : true }
 )
+
+db.alunos.find().sort({"nome": -1 }).pretty().limit(2)
+
+db.alunos.update(
+    {"_id" : ObjectId("618972d9876a36db84bf8362")},
+    {
+        $set :{
+            localizacao : {
+                endereco : "Rua Vergueiro, 3185",
+                cidade : "São Paulo",
+                coordinates : [-23.588213, -46.632356],
+                type : "Point"
+            }
+        }
+    }
+)
+
 
 
