@@ -16,13 +16,15 @@
         }   
     ] 
 }
+
 {
     "nome" : "Augusto",
     "data_nascimento" : new Date(2000,02,26),
     "curso": {
         "nome" : "Ciências da computação"
-    },
+    }
 }
+
 {
     "nome" : "Julio",
     "data_nascimento" : new Date(1972, 08, 30),
@@ -102,3 +104,66 @@ db.alunos.find (
     ]
 }
 )
+
+
+db.alunos.update (
+    {"curso.nome" : "Sistema de informação"},
+    {
+        $set : 
+            {"curso.nome" : "Sistemas de Informação"}
+    },
+    
+        {
+            multi : true
+        } 
+)
+
+
+db.alunos.update(
+        {"_id" : ObjectId("618972d9876a36db84bf8362"),"habilidades.nome" : "ingles"},
+        {$set : {"habilidades.$.nome": "Ingles"}}
+)
+
+db.alunos.update(
+        {"habilidades.nome" : "inglës"},
+        {$set : {"habilidades.$.nome": "Ingles"}},
+        { multi : true }
+)
+
+db.alunos.find (
+    {"habilidades.nome" : "ingles"}
+)
+
+
+
+db.alunos.update (
+    {"nome" : "Antonio"},
+    {$push : { "notas" : 10 } }
+)
+db.alunos.remove(
+    {"nome": "Daniela", "nota" : []}
+)
+
+db.alunos.update(
+    {"nome" : "Antonio"},
+    {
+        $set : { "notas": [10,0] }
+    }
+)
+
+db.alunos.update (
+		{"nome" : "Antonio"},
+		{$push : { "notas" : {$each : [10.0, 5.0, 6.0, 8.0] }}}
+)
+
+db.alunos.update (
+		{"nome" : "Antonio"},
+		{$set : { "notas" :  [10.0, 5.0, 6.0, 8.0] }}
+)
+db.alunos.update(
+        {"habilidades.nome" : "inglës"},
+        {$set : {"habilidades.$.nome": "Ingles"}},
+        { multi : true }
+)
+
+

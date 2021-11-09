@@ -1,0 +1,43 @@
+{
+    nome : "Fernandes",
+    localizacao : {type : "Point", "coordinates" : [-23.5882133, -46.63235580000003]}
+}
+{
+    nome : "Rafael",
+    localizacao : {type : "Point", "coordinates" : [-23.5707855, -46.643499399999996]}
+}
+{
+    nome : "Claudete",
+    localizacao : {type : "Point", "coordinates" : [-23.5829461, -46.6315126]}
+}
+{
+    nome : "Lizandra",
+    localizacao : {type : "Point", "coordinates" : [-23.5834181, -46.6418552]}
+}db.
+
+db.alunos.aggregate([
+    {
+        $geoNear : {
+            near : {
+                coordinates: [-23.5834181, -46.6418552],
+                type : "Point"
+            },
+            distanceField : "distancia",
+            spherical : true
+        }
+    }
+    ])
+
+
+db.alunos.aggregate([
+    {
+        $geoNear : {
+            near : [
+                coordinates: [-23.5834181, -46.6418552],
+                type : "Point"
+        ],
+            distanceField : "distancia",
+            spherical : true
+    }
+}
+])
